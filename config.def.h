@@ -1,4 +1,5 @@
 /* appearance */
+static const int newclientathead = 0; /* 定义新窗口在栈顶还是栈底 */
 static const unsigned int borderpx = 1; /* border pixel of windows */
 static const unsigned int snap = 32; /* snap pixel */
 static const int showbar = 1; /* 0 means no bar */
@@ -86,7 +87,7 @@ static const Key keys[] = {
 
 
 	{ MODKEY, XK_d, spawn, { .v = rofi } },
-	{ MODKEY | ShiftMask, XK_Return, spawn, { .v = termcmd } },
+	{ MODKEY, XK_Return, spawn, { .v = termcmd } },
 	{ MODKEY, XK_b, togglebar, { 0 } },
 	{ MODKEY, XK_j, focusstack, { .i = +1 } },
 	{ MODKEY, XK_k, focusstack, { .i = -1 } },
