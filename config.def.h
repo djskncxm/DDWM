@@ -19,21 +19,40 @@ static const char *fonts[] = {
 };
 static const char dmenufont[] = "monospace:size=10";
 
-static const char col_gray1[] = "#222222";
-static const char col_gray2[] = "#444444";
-static const char col_gray3[] = "#bbbbbb";
-static const char col_gray4[] = "#eeeeee";
-static const char col_cyan[] = "#005577";
+static const char col_gray1[] = "#101419";
+static const char col_gray2[] = "#15191e";
+static const char col_gray3[] = "#485263";
+static const char col_gray4[] = "#15191e";
+static const char col_yellow[] = "#f1cf8a";
+static const char col_green[] = "#76b97f";
+static const char col_teal[] = "#70a5eb";
+static const char col_magenta[] = "#c68aee";
+static const char col_red[] = "#e05f65";
+static const char col_blue[] = "#70a5eb";
+static const char col_cyan[] = "#74bee9";
+static const char col_write[] = "#FFFFFF";
+static const char col_cccc[] = "#CCCCFF";
+static const char col_xxxx[] = "#FFCCFF";
+static const char col_liang[] = "#99FFFF";
+static const char col_borderbar[] = "#101419";
 static const char *colors[][3] = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeSel] = { col_gray4, col_cyan, col_cyan },
+	[SchemeSystray] = { "#fff0f5", col_blue, col_cccc, },
 };
 
 /* tagging */
 static const char *tags[] = { "",  "", "󱍙", "󰘅", "",
 			      "󰢔", "", "",  "󰹑" }; // bar显示
 
+static const char *tagsel[][2] = {
+	{ col_blue, col_borderbar },  { col_yellow, col_borderbar },
+	{ col_green, col_borderbar }, { col_magenta, col_borderbar },
+	{ "#FFCCFF", col_borderbar }, { "#99FFFF", col_borderbar },
+	{ "#9966CC", col_borderbar }, { "#FF66CC", col_borderbar },
+	{ "#CCCCFF", col_borderbar },
+};
 static const Rule rules[] = {
 	/* xprop(1):
 	 *	WM_CLASS(STRING) = instance, class
