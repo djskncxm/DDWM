@@ -7,7 +7,7 @@ static const int topbar = 1; /* 0 means bottom bar */
 static const char *fonts[] = {
 	"monospace:size=10",
 	"LXGWWenKai:size=10",
-	"JetBrainsMono Nerd Font:size=10",
+	"Iosevka Nerd Font:size=10",
 };
 static const char dmenufont[] = "monospace:size=10";
 
