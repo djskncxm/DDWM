@@ -5,3 +5,4 @@ dwm.o
 util.o
 *.orig
 ./.cache/*
+*.rej
