@@ -77,6 +77,7 @@ static const char *dmenucmd[] = { "dmenu_run", "-m",  dmenumon,	 "-fn",
 				  dmenufont,   "-nb", col_gray1, "-nf",
 				  col_gray3,   "-sb", col_cyan,	 "-sf",
 				  col_gray4,   NULL };
+static const char *rofi[] = {"rofi" , "-show" , "run",NULL};
 static const char *termcmd[] = { "st", NULL };
 static const char *flameshot[] = { "flameshot", "gui", NULL };
 
@@ -84,7 +85,7 @@ static const Key keys[] = {
 	/* modifier                     key        function        argument */
 
 
-	{ MODKEY, XK_d, spawn, { .v = dmenucmd } },
+	{ MODKEY, XK_d, spawn, { .v = rofi } },
 	{ MODKEY | ShiftMask, XK_Return, spawn, { .v = termcmd } },
 	{ MODKEY, XK_b, togglebar, { 0 } },
 	{ MODKEY, XK_j, focusstack, { .i = +1 } },
