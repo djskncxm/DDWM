@@ -17,8 +17,8 @@
       "-DXINERAMA",
       "drw.c"
     ],
-    "directory": "/home/duck/NewSuckless/dwm",
-    "file": "/home/duck/NewSuckless/dwm/drw.c"
+    "directory": "/home/duck/NewSuckless/dwmNew",
+    "file": "/home/duck/NewSuckless/dwmNew/drw.c"
   },
   {
     "arguments": [
@@ -38,8 +38,8 @@
       "-DXINERAMA",
       "dwm.c"
     ],
-    "directory": "/home/duck/NewSuckless/dwm",
-    "file": "/home/duck/NewSuckless/dwm/dwm.c"
+    "directory": "/home/duck/NewSuckless/dwmNew",
+    "file": "/home/duck/NewSuckless/dwmNew/dwm.c"
   },
   {
     "arguments": [
@@ -59,7 +59,7 @@
       "-DXINERAMA",
       "util.c"
     ],
-    "directory": "/home/duck/NewSuckless/dwm",
-    "file": "/home/duck/NewSuckless/dwm/util.c"
+    "directory": "/home/duck/NewSuckless/dwmNew",
+    "file": "/home/duck/NewSuckless/dwmNew/util.c"
   }
 ]
