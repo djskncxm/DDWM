@@ -78,9 +78,9 @@ static const int ulineall 		= 0;	/* 1 to show underline on all tags, 0 for just 
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=", tile }, /* first entry is default */
-	{ "><>", NULL }, /* no layout function means floating behavior */
-	{ "[M]", monocle },
+	{ "[平铺]", tile }, /* first entry is default */
+	{ "[散装]", NULL }, /* no layout function means floating behavior */
+	{ "[重叠]", monocle },
 };
 
 /* key definitions */
