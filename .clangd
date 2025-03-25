@@ -1,0 +1,46 @@
+# .clangd 配置文件
+
+# 编译命令配置
+CompileFlags:
+  # 使用当前目录下的 compile_commands.json
+  CompilationDatabase: .
+
+  # 添加额外的编译标志（适用于 C 语言）
+  Add: 
+    - -std=c11       # C11 标准
+    - -Wall          # 启用所有警告
+    - -Wextra        # 启用额外警告
+    - -Iinclude      # 添加头文件搜索路径（如果有）
+    - -Isrc          # 添加源文件搜索路径（如果有）
+
+# 代码补全配置
+Completion:
+  # 启用详细的补全信息
+  Detailed: true
+
+# 代码诊断配置
+Diagnostics:
+  # 启用所有诊断信息
+  Enable: true
+
+  # 忽略特定诊断信息
+  Ignore: 
+    - unused-parameter  # 忽略未使用的参数警告
+    - unused-variable   # 忽略未使用的变量警告
+
+# 代码格式化配置
+Format:
+  # 启用自动格式化
+  Enable: true
+
+  # 指定 .clang-format 文件的路径
+  Style: /home/duck/.clang-format
+
+# 代码索引配置
+Index:
+  # 启用后台索引
+  Background: true
+
+  # 索引标准库和系统头文件
+  StandardLibrary: true
+  SystemHeaders: true
