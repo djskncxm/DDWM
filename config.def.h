@@ -141,6 +141,10 @@ static const char *dmenucmd[] = { "dmenu_run", "-m",  dmenumon,	 "-fn",
 				  dmenufont,   "-nb", col_gray1, "-nf",
 				  col_gray3,   "-sb", col_cyan,	 "-sf",
 				  col_gray4,   NULL };
+
+static const char *volup[] = {"amixer" ,"set" ,"Master" ,"5%+",NULL};
+static const char *voldown[] = {"amixer" ,"set" ,"Master" ,"5%-",NULL};
+
 static const char *rofi[] = { "rofi", "-show", "run", NULL };
 static const char *termcmd[] = { "st", NULL };
 static const char *flameshot[] = { "flameshot", "gui", NULL };
@@ -189,6 +193,9 @@ static const Key keys[] = {
 	{ MODKEY, XK_space, togglescratch, { .ui = 0 } },
 	{ MODKEY, XK_u, togglescratch, { .ui = 1 } },
 	{ MODKEY, XK_x, togglescratch, { .ui = 2 } },
+	{ MODKEY, XK_w, spawn, { .v = volup } },
+	{ MODKEY, XK_s, spawn, { .v = voldown } },
+	
 	// ---------------------------------------------
 };
 
