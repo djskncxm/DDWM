@@ -50,7 +50,7 @@ typedef struct {
 	const void *cmd;
 } Sp;
 const char *spcmd1[] = { "st", "-n", "spterm", "-g", "120x34", NULL };
-const char *spcmd2[] = { "st",	   "-n", "spfm",   "-g",
+const char *spcmd2[] = { "st",	   "-n", "spfm",     "-g",
 			 "145x44", "-e", "musicfox", NULL };
 const char *spcmd3[] = { "keepassxc", NULL };
 static Sp scratchpads[] = {
@@ -148,6 +148,7 @@ static const char *volup[] = { "amixer", "set", "Master", "5%+", NULL };
 static const char *voldown[] = { "amixer", "set", "Master", "5%-", NULL };
 
 static const char *rofi[] = { "rofi", "-show", "drun", NULL };
+static const char *rofi_window[] = { "rofi", "-show", "window", NULL };
 static const char *termcmd[] = { "kitty", NULL };
 static const char *flameshot[] = { "flameshot", "gui", NULL };
 
@@ -197,6 +198,7 @@ static const Key keys[] = {
 
 	// ---------------------------------------------
 	{ MODKEY, XK_z, spawn, { .v = flameshot } },
+	{ MODKEY, XK_r, spawn, { .v = rofi_window } },
 	{ MODKEY, XK_space, togglescratch, { .ui = 0 } },
 	{ MODKEY, XK_u, togglescratch, { .ui = 1 } },
 	{ MODKEY, XK_x, togglescratch, { .ui = 2 } },
