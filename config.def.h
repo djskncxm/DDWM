@@ -145,8 +145,8 @@ static const char *dmenucmd[] = { "dmenu_run", "-m",  dmenumon,	 "-fn",
 static const char *volup[] = {"amixer" ,"set" ,"Master" ,"5%+",NULL};
 static const char *voldown[] = {"amixer" ,"set" ,"Master" ,"5%-",NULL};
 
-static const char *rofi[] = { "rofi", "-show", "run", NULL };
-static const char *termcmd[] = { "st", NULL };
+static const char *rofi[] = { "rofi", "-show", "drun", NULL };
+static const char *termcmd[] = { "kitty", NULL };
 static const char *flameshot[] = { "flameshot", "gui", NULL };
 
 #include "movestack.c"
@@ -189,7 +189,7 @@ static const Key keys[] = {
 	{ MODKEY | ControlMask | ShiftMask, XK_q, quit, { 1 } },
 
 	// ---------------------------------------------
-	{ MODKEY, XK_n, spawn, { .v = flameshot } },
+	{ MODKEY, XK_z, spawn, { .v = flameshot } },
 	{ MODKEY, XK_space, togglescratch, { .ui = 0 } },
 	{ MODKEY, XK_u, togglescratch, { .ui = 1 } },
 	{ MODKEY, XK_x, togglescratch, { .ui = 2 } },
