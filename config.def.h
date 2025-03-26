@@ -40,6 +40,8 @@ static const char *colors[][3] = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_cccc, col_gray3, col_gray2 },
 	[SchemeSel] = { col_gray4, col_cyan, col_cyan },
+	[SchemeHov]  = { col_gray4, col_liang,  col_liang  },
+	[SchemeHid]  = { col_liang,  col_gray1, col_liang  },
 	[SchemeSystray] = { col_gray4, "#fcf0c7","#fcf0c7", },
 };
 
@@ -142,8 +144,8 @@ static const char *dmenucmd[] = { "dmenu_run", "-m",  dmenumon,	 "-fn",
 				  col_gray3,   "-sb", col_cyan,	 "-sf",
 				  col_gray4,   NULL };
 
-static const char *volup[] = {"amixer" ,"set" ,"Master" ,"5%+",NULL};
-static const char *voldown[] = {"amixer" ,"set" ,"Master" ,"5%-",NULL};
+static const char *volup[] = { "amixer", "set", "Master", "5%+", NULL };
+static const char *voldown[] = { "amixer", "set", "Master", "5%-", NULL };
 
 static const char *rofi[] = { "rofi", "-show", "drun", NULL };
 static const char *termcmd[] = { "kitty", NULL };
@@ -156,8 +158,10 @@ static const Key keys[] = {
 	{ MODKEY, XK_d, spawn, { .v = rofi } },
 	{ MODKEY, XK_Return, spawn, { .v = termcmd } },
 	{ MODKEY, XK_b, togglebar, { 0 } },
-	{ MODKEY, XK_j, focusstack, { .i = +1 } },
-	{ MODKEY, XK_k, focusstack, { .i = -1 } },
+	{ MODKEY, XK_j, focusstackvis, { .i = +1 } },
+	{ MODKEY, XK_k, focusstackvis, { .i = -1 } },
+	// { MODKEY | ShiftMask, XK_j, focusstackhid, { .i = +1 } },
+	// { MODKEY | ShiftMask, XK_k, focusstackhid, { .i = -1 } },
 	{ MODKEY, XK_i, incnmaster, { .i = +1 } },
 	{ MODKEY, XK_p, incnmaster, { .i = -1 } },
 	{ MODKEY, XK_h, setmfact, { .f = -0.05 } },
@@ -181,6 +185,9 @@ static const Key keys[] = {
 	{ MODKEY, XK_equal, setgaps, { .i = +1 } },
 	{ MODKEY | ShiftMask, XK_equal, setgaps, { .i = 0 } },
 	{ MODKEY | ShiftMask, XK_period, tagmon, { .i = +1 } },
+	{ MODKEY, XK_s, show, { 0 } },
+	{ MODKEY | ShiftMask, XK_s, showall, { 0 } },
+	{ MODKEY, XK_h, hide, { 0 } },
 	TAGKEYS(XK_1, 0) TAGKEYS(XK_2, 1) TAGKEYS(XK_3, 2) TAGKEYS(XK_4, 3)
 		TAGKEYS(XK_5, 4) TAGKEYS(XK_6, 5) TAGKEYS(XK_7, 6) TAGKEYS(XK_8,
 									   7)
@@ -195,7 +202,7 @@ static const Key keys[] = {
 	{ MODKEY, XK_x, togglescratch, { .ui = 2 } },
 	{ MODKEY, XK_w, spawn, { .v = volup } },
 	{ MODKEY, XK_s, spawn, { .v = voldown } },
-	
+
 	// ---------------------------------------------
 };
 
@@ -205,6 +212,7 @@ static const Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol, 0, Button1, setlayout, { 0 } },
 	{ ClkLtSymbol, 0, Button3, setlayout, { .v = &layouts[2] } },
+	{ ClkWinTitle, 0, Button1, togglewin, { 0 } },
 	{ ClkWinTitle, 0, Button2, zoom, { 0 } },
 	{ ClkStatusText, 0, Button2, spawn, { .v = termcmd } },
 	{ ClkClientWin, MODKEY, Button1, movemouse, { 0 } },
