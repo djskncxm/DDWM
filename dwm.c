@@ -726,9 +726,10 @@ void clientmessage(XEvent *e)
 				 (cme->data.l[0] == 2 /* _NET_WM_STATE_TOGGLE */ &&
 				  !c->isfullscreen)));
 	} else if (cme->message_type == netatom[NetActiveWindow]) {
-		for (i = 0; i < LENGTH(tags) && !((1 << i) & c->tags); i++);
+		for (i = 0; i < LENGTH(tags) && !((1 << i) & c->tags); i++)
+			;
 		if (i < LENGTH(tags)) {
-			const Arg a = {.ui = 1 << i};
+			const Arg a = { .ui = 1 << i };
 			selmon = c->mon;
 			view(&a);
 			focus(c);
@@ -937,6 +938,8 @@ void drawbar(Monitor *m)
 	unsigned int i, occ = 0, urg = 0;
 	Client *c;
 
+	drw_setscheme(drw, scheme[SchemeNorm]);
+	drw_rect(drw, 0, 0, m->ww - stw, bh, 1, 1);
 	if (!m->showbar)
 		return;
 
@@ -1001,6 +1004,7 @@ void drawbar(Monitor *m)
 				else
 					scm = SchemeNorm;
 				drw_setscheme(drw, scheme[scm]);
+				// drw_setscheme(drw, scheme[m == selmon ? SchemeSel : SchemeNorm]); // 这一行应删除
 
 				// 修改1：使用c->icon代替m->sel->icon
 				drw_text(drw, x, 0, tabw, bh,
@@ -1035,7 +1039,6 @@ void drawbar(Monitor *m)
 		}
 	} else {
 		drw_setscheme(drw, scheme[SchemeNorm]);
-		// drw_rect(drw, x, 0, w, bh, 1, 1);
 		drw_rect(drw, x, 0, m->ww - stw - x, bh, 1, 1);
 	}
 	m->bt = n;
