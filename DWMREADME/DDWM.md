@@ -1,8 +1,8 @@
 ## DDWM是我的dwm分支(duck dwm)
 
-![xxx](./DWMREADME/Pasted_image_20250327085839.png)
+![[Pasted image 20250327085839.png]]
 这是一个概况
-![about](./DWMREADME/Pasted_image_20250327085915.png)
+![[Pasted image 20250327085915.png]]
 我觉得还不错，bar栏的信息显示还算算面，bar是slstatus，也是dwm系列产品
 bar栏的窗口标签页支持隐藏和现实，可以鼠标点击和键盘快捷键
 平铺模式下新新建窗口会在旧窗口之后，这点感谢C佬视频
@@ -25,13 +25,10 @@ dwm原本是alt键位为modsuper，我更改为win键(键盘上带win标识的)
 
 ```shell
 
-kitty rofi flameshot amixer st musicfox slstatus
+kitty rofi flameshot amixer (st, musicfox) 
 
 ```
 
 ## 其他应该没了，有疑问可以加我
 QQ 959735909
 邮箱同上
-
-
-
