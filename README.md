@@ -28,6 +28,14 @@ dwm原本是alt键位为modsuper，我更改为win键(键盘上带win标识的)
 kitty rofi flameshot amixer st musicfox slstatus
 
 ```
+首先运行
+```shell
+sudo make install
+```
+再运行
+```shell
+sudo ./dwma.sh # 这个文件是创建DM用的，不放心大可以打开看看
+```
 
 ## 其他应该没了，有疑问可以加我
 QQ 959735909
