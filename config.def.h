@@ -188,7 +188,7 @@ static const Key keys[] = {
 	{ MODKEY | ShiftMask, XK_period, tagmon, { .i = +1 } },
 	{ MODKEY, XK_s, show, { 0 } },
 	{ MODKEY | ShiftMask, XK_s, showall, { 0 } },
-	{ MODKEY, XK_h, hide, { 0 } },
+	{ MODKEY, XK_g, hide, { 0 } },
 	TAGKEYS(XK_1, 0) TAGKEYS(XK_2, 1) TAGKEYS(XK_3, 2) TAGKEYS(XK_4, 3)
 		TAGKEYS(XK_5, 4) TAGKEYS(XK_6, 5) TAGKEYS(XK_7, 6) TAGKEYS(XK_8,
 									   7)
@@ -198,7 +198,7 @@ static const Key keys[] = {
 
 	// ---------------------------------------------
 	{ MODKEY, XK_z, spawn, { .v = flameshot } },
-	{ MODKEY, XK_r, spawn, { .v = rofi_window } },
+	{ MODKEY | ShiftMask, XK_d, spawn, { .v = rofi_window } },
 	{ MODKEY, XK_space, togglescratch, { .ui = 0 } },
 	{ MODKEY, XK_u, togglescratch, { .ui = 1 } },
 	{ MODKEY, XK_x, togglescratch, { .ui = 2 } },

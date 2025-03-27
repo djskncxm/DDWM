@@ -35,8 +35,10 @@
 	 MAX(0, MIN((y) + (h), (m)->wy + (m)->wh) - MAX((y), (m)->wy)))
 #define ISVISIBLE(C) ((C->tags & C->mon->tagset[C->mon->seltags]))
 #define MOUSEMASK (BUTTONMASK | PointerMotionMask)
+
 #define WIDTH(X) ((X)->w + 2 * (X)->bw)
 #define HEIGHT(X) ((X)->h + 2 * (X)->bw)
+
 #define HIDDEN(C) ((getstate(C->win) == IconicState))
 #define NUMTAGS (LENGTH(tags) + LENGTH(scratchpads))
 #define TAGMASK ((1 << NUMTAGS) - 1)
@@ -280,6 +282,7 @@ static void tag(const Arg *arg);
 static void tagmon(const Arg *arg);
 static void tile(Monitor *m);
 static void togglebar(const Arg *arg);
+void center_window(Client *c);
 static void togglefloating(const Arg *arg);
 static void togglescratch(const Arg *arg);
 static void toggletag(const Arg *arg);
@@ -2560,18 +2563,44 @@ void togglescratch(const Arg *arg)
 		spawn(&sparg);
 	}
 }
+void center_window(Client *c)
+{
+	Monitor *m = c->mon;
+	if (!c || !m)
+		return;
+
+	// 计算屏幕中心坐标（考虑窗口边框）
+	int center_x = m->mx + (m->mw - WIDTH(c)) / 2;
+	int center_y = m->my + (m->mh - HEIGHT(c)) / 2;
+
+	// 更新窗口位置
+	c->x = center_x;
+	c->y = center_y;
+
+	// 强制刷新窗口位置
+	XMoveWindow(dpy, c->win, c->x, c->y);
+}
 
 void togglefloating(const Arg *arg)
 {
+	Client *c = selmon->sel;
+	if (!c) return;
+
 	if (!selmon->sel)
 		return;
-	if (selmon->sel->isfullscreen) /* no support for fullscreen windows */
-		return;
-	selmon->sel->isfloating = !selmon->sel->isfloating ||
-				  selmon->sel->isfixed;
+	if (selmon->sel->isfullscreen) return;
+
+	// selmon->sel->isfloating = !selmon->sel->isfloating || selmon->sel->isfixed;
+	c->isfloating = !c->isfloating || c->isfixed;
+
 	if (selmon->sel->isfloating)
-		resize(selmon->sel, selmon->sel->x, selmon->sel->y,
-		       selmon->sel->w, selmon->sel->h, 0);
+		// resize(selmon->sel, selmon->sel->x, selmon->sel->y, selmon->sel->w, selmon->sel->h, 0);
+		resize(c, c->x, c->y, c->w, c->h, 0);
+
+	// c->isfloating = !c->isfloating || c->isfixed;
+	if (c->isfloating) { 
+		center_window(c);
+	}
 	arrange(selmon);
 }
 
