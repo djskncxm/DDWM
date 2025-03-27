@@ -65,11 +65,11 @@ static const char *tags[] = { "",  "", "󱍙", "󰘅", "",
 			      "󰢔", "", "",  "󰹑" }; // bar显示
 
 static const char *tagsel[][2] = {
-	{ col_blue, col_borderbar },  { col_yellow, col_borderbar },
-	{ col_green, col_borderbar }, { col_magenta, col_borderbar },
-	{ "#FFCCFF", col_borderbar }, { "#99FFFF", col_borderbar },
-	{ "#9966CC", col_borderbar }, { "#FF66CC", col_borderbar },
-	{ "#CCCCFF", col_borderbar },
+	{ col_blue, col_gray3 },  { col_yellow, col_gray3 },
+	{ col_green, col_gray3 }, { col_magenta, col_gray3 },
+	{ "#FFCCFF", col_gray3 }, { "#99FFFF", col_gray3 },
+	{ "#9966CC", col_gray3 }, { "#FF66CC", col_gray3 },
+	{ "#CCCCFF", col_gray3 },
 };
 static const Rule rules[] = {
 	/* xprop(1):
