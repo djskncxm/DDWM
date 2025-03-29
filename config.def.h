@@ -1,4 +1,5 @@
 static const int newclientathead = 0; /* 定义新窗口在栈顶还是栈底 */
+
 static const unsigned int borderpx = 1; /* border pixel of windows */
 static const unsigned int snap = 32; /* snap pixel */
 static const unsigned int gappx = 9; /* gaps between windows */
