@@ -3,13 +3,10 @@ static const int newclientathead = 0; /* 定义新窗口在栈顶还是栈底 */
 static const unsigned int borderpx = 1; /* border pixel of windows */
 static const unsigned int snap = 32; /* snap pixel */
 static const unsigned int gappx = 9; /* gaps between windows */
-static const unsigned int systraypinning =
-	0; /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
-static const unsigned int systrayonleft =
-	0; /* 0: systray in the right corner, >0: systray on left of status text */
+static const unsigned int systraypinning = 0; /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
+static const unsigned int systrayonleft = 0; /* 0: systray in the right corner, >0: systray on left of status text */
 static const unsigned int systrayspacing = 2; /* systray spacing */
-static const int systraypinningfailfirst =
-	1; /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
+static const int systraypinningfailfirst = 1; /* 1: if pinning fails, display systray on the first monitor, False: display systray on the last monitor*/
 static const int showsystray = 1; /* 0 means no systray */
 static const int showbar = 1; /* 0 means no bar */
 static const int topbar = 1; /* 0 means bottom bar */
@@ -43,7 +40,7 @@ static const char *colors[][3] = {
 	[SchemeSel] = { col_gray4, col_cyan, col_cyan },
 	[SchemeHov]  = { col_gray4, col_liang,  col_liang  },
 	[SchemeHid]  = { col_liang,  col_gray1, col_liang  },
-	[SchemeSystray] = { col_gray4, "#fcf0c7","#fcf0c7", },
+	[SchemeSystray] = { "#cdd6f4", "#cdd6f4","#cdd6f4", },
 };
 
 typedef struct {
@@ -51,26 +48,22 @@ typedef struct {
 	const void *cmd;
 } Sp;
 const char *spcmd1[] = { "st", "-n", "spterm", "-g", "120x34", NULL };
-const char *spcmd2[] = { "st",	   "-n", "spfm",     "-g", "145x44", "-e", "musicfox", NULL };
+const char *spcmd2[] = { "st", "-n", "spfm", "-g", "145x44", "-e", "musicfox", NULL };
 
-const char *spcmd3[] = { "st",	   "-n", "keepassxc",     "-g", "145x44", "-e", "calcurse", NULL };
-static Sp scratchpads[] = {
-	/* name          cmd  */
-	{ "spterm", spcmd1 },
-	{ "spranger", spcmd2 },
-	{ "keepassxc", spcmd3 },
+const char *spcmd3[] = { "st", "-n", "keepassxc", "-g", "145x44", "-e", "calcurse", NULL };
+static Sp   scratchpads[] = {
+	  /* name          cmd  */
+	  { "spterm", spcmd1 },
+	  { "spranger", spcmd2 },
+	  { "keepassxc", spcmd3 },
 };
 
 /* tagging */
-static const char *tags[] = { "",  "", "󱍙", "󰘅", "",
-			      "󰢔", "", "",  "󰹑" }; // bar显示
+static const char *tags[] = { "", "", "󱍙", "󰘅", "", "󰢔", "", "", "󰹑" }; // bar显示
 
 static const char *tagsel[][2] = {
-	{ col_blue, col_gray3 },  { col_yellow, col_gray3 },
-	{ col_green, col_gray3 }, { col_magenta, col_gray3 },
-	{ "#FFCCFF", col_gray3 }, { "#99FFFF", col_gray3 },
-	{ "#9966CC", col_gray3 }, { "#FF66CC", col_gray3 },
-	{ "#CCCCFF", col_gray3 },
+	{ col_blue, col_gray3 },  { col_yellow, col_gray3 }, { col_green, col_gray3 }, { col_magenta, col_gray3 }, { "#FFCCFF", col_gray3 },
+	{ "#99FFFF", col_gray3 }, { "#9966CC", col_gray3 },  { "#FF66CC", col_gray3 }, { "#CCCCFF", col_gray3 },
 };
 static const Rule rules[] = {
 	/* xprop(1):
@@ -83,6 +76,10 @@ static const Rule rules[] = {
 	{ NULL, "spterm", NULL, SPTAG(0), 1, -1 },
 	{ NULL, "spfm", NULL, SPTAG(1), 1, -1 },
 	{ NULL, "keepassxc", NULL, SPTAG(2), 1, -1 },
+	{ NULL, NULL, "图片查看器", 0, 1, -1 }, // qq图片查看器        浮动
+	{ NULL, NULL, "腾讯频道", 0, 1, -1 }, // qq图片查看器        浮动
+	{ NULL, NULL, "预览", 0, 1, -1 }, // qq图片查看器        浮动
+	// { NULL, NULL, "图片查看器", 0, 1, -1 }, // qq图片查看器        浮动
 	{
 		"wemeetapp",
 		NULL,
@@ -95,20 +92,14 @@ static const Rule rules[] = {
 
 /* layout(s) */
 static const float mfact = 0.55; /* factor of master area size [0.05..0.95] */
-static const int nmaster = 1; /* number of clients in master area */
-static const int resizehints =
-	1; /* 1 means respect size hints in tiled resizals */
-static const int lockfullscreen =
-	1; /* 1 will force focus on the fullscreen window */
+static const int   nmaster = 1; /* number of clients in master area */
+static const int   resizehints = 1; /* 1 means respect size hints in tiled resizals */
+static const int   lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
-static const unsigned int ulinepad =
-	5; /* horizontal padding between the underline and tag */
-static const unsigned int ulinestroke =
-	2; /* thickness / height of the underline */
-static const unsigned int ulinevoffset =
-	0; /* how far above the bottom of the bar the line should appear */
-static const int ulineall =
-	0; /* 1 to show underline on all tags, 0 for just the active ones */
+static const unsigned int ulinepad = 5; /* horizontal padding between the underline and tag */
+static const unsigned int ulinestroke = 2; /* thickness / height of the underline */
+static const unsigned int ulinevoffset = 0; /* how far above the bottom of the bar the line should appear */
+static const int	  ulineall = 0; /* 1 to show underline on all tags, 0 for just the active ones */
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -119,14 +110,9 @@ static const Layout layouts[] = {
 
 /* key definitions */
 #define MODKEY Mod4Mask
-#define TAGKEYS(KEY, TAG)                                                      \
-	{ MODKEY, KEY, view, { .ui = 1 << TAG } },                             \
-		{ MODKEY | ControlMask, KEY, toggleview, { .ui = 1 << TAG } }, \
-		{ MODKEY | ShiftMask, KEY, tag, { .ui = 1 << TAG } },          \
-		{ MODKEY | ControlMask | ShiftMask,                            \
-		  KEY,                                                         \
-		  toggletag,                                                   \
-		  { .ui = 1 << TAG } },
+#define TAGKEYS(KEY, TAG)                                                                                         \
+	{ MODKEY, KEY, view, { .ui = 1 << TAG } }, { MODKEY | ControlMask, KEY, toggleview, { .ui = 1 << TAG } }, \
+		{ MODKEY | ShiftMask, KEY, tag, { .ui = 1 << TAG } }, { MODKEY | ControlMask | ShiftMask, KEY, toggletag, { .ui = 1 << TAG } },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd)                                 \
@@ -138,12 +124,8 @@ static const Layout layouts[] = {
 	}
 
 /* commands */
-static char dmenumon[2] =
-	"0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m",  dmenumon,	 "-fn",
-				  dmenufont,   "-nb", col_gray1, "-nf",
-				  col_gray3,   "-sb", col_cyan,	 "-sf",
-				  col_gray4,   NULL };
+static char	   dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 
 static const char *volup[] = { "amixer", "set", "Master", "5%+", NULL };
 static const char *voldown[] = { "amixer", "set", "Master", "5%-", NULL };
@@ -190,11 +172,8 @@ static const Key keys[] = {
 	{ MODKEY, XK_s, show, { 0 } },
 	{ MODKEY | ShiftMask, XK_s, showall, { 0 } },
 	{ MODKEY, XK_g, hide, { 0 } },
-	TAGKEYS(XK_1, 0) TAGKEYS(XK_2, 1) TAGKEYS(XK_3, 2) TAGKEYS(XK_4, 3)
-		TAGKEYS(XK_5, 4) TAGKEYS(XK_6, 5) TAGKEYS(XK_7, 6) TAGKEYS(XK_8,
-									   7)
-			TAGKEYS(XK_9,
-				8){ MODKEY | ShiftMask, XK_e, quit, { 0 } },
+	TAGKEYS(XK_1, 0) TAGKEYS(XK_2, 1) TAGKEYS(XK_3, 2) TAGKEYS(XK_4, 3) TAGKEYS(XK_5, 4) TAGKEYS(XK_6, 5) TAGKEYS(XK_7, 6) TAGKEYS(XK_8, 7)
+		TAGKEYS(XK_9, 8){ MODKEY | ShiftMask, XK_e, quit, { 0 } },
 	{ MODKEY | ControlMask | ShiftMask, XK_q, quit, { 1 } },
 
 	// ---------------------------------------------
