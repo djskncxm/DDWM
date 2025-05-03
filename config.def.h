@@ -20,7 +20,7 @@ static const char dmenufont[] = "monospace:size=10";
 
 static const char col_gray1[] = "#101419";
 static const char col_gray2[] = "#15191e";
-static const char col_gray3[] = "#485263";
+static const char col_gray3[] = "#1e1e2e";
 static const char col_gray4[] = "#15191e";
 static const char col_yellow[] = "#fcf0c7";
 static const char col_green[] = "#76b97f";
@@ -36,11 +36,11 @@ static const char col_liang[] = "#99FFFF";
 static const char col_borderbar[] = "#101419";
 static const char *colors[][3] = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_cccc, col_gray3, col_gray2 },
+	[SchemeNorm] = { col_cccc, "#1e1e2e", "#1e1e2e" },
 	[SchemeSel] = { col_gray4, col_cyan, col_cyan },
 	[SchemeHov]  = { col_gray4, col_liang,  col_liang  },
 	[SchemeHid]  = { col_liang,  col_gray1, col_liang  },
-	[SchemeSystray] = { "#cdd6f4", "#cdd6f4","#cdd6f4", },
+	[SchemeSystray] = { "#1e1e2e", "#1e1e2e","#1e1e2e", },
 };
 
 typedef struct {
@@ -144,8 +144,8 @@ static const Key keys[] = {
 	{ MODKEY, XK_b, togglebar, { 0 } },
 	{ MODKEY, XK_j, focusstackvis, { .i = +1 } },
 	{ MODKEY, XK_k, focusstackvis, { .i = -1 } },
-	// { MODKEY | ShiftMask, XK_j, focusstackhid, { .i = +1 } },
-	// { MODKEY | ShiftMask, XK_k, focusstackhid, { .i = -1 } },
+	{ MODKEY | ShiftMask, XK_w, focusstackhid, { .i = +1 } },
+	{ MODKEY | ShiftMask, XK_s, focusstackhid, { .i = -1 } },
 	{ MODKEY, XK_i, incnmaster, { .i = +1 } },
 	{ MODKEY, XK_p, incnmaster, { .i = -1 } },
 	{ MODKEY, XK_h, setmfact, { .f = -0.05 } },
@@ -169,7 +169,7 @@ static const Key keys[] = {
 	{ MODKEY, XK_equal, setgaps, { .i = +1 } },
 	{ MODKEY | ShiftMask, XK_equal, setgaps, { .i = 0 } },
 	{ MODKEY | ShiftMask, XK_period, tagmon, { .i = +1 } },
-	{ MODKEY, XK_s, show, { 0 } },
+	{ MODKEY, XK_o, show, { 0 } },
 	{ MODKEY | ShiftMask, XK_s, showall, { 0 } },
 	{ MODKEY, XK_g, hide, { 0 } },
 	TAGKEYS(XK_1, 0) TAGKEYS(XK_2, 1) TAGKEYS(XK_3, 2) TAGKEYS(XK_4, 3) TAGKEYS(XK_5, 4) TAGKEYS(XK_6, 5) TAGKEYS(XK_7, 6) TAGKEYS(XK_8, 7)
