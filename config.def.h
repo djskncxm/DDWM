@@ -17,8 +17,8 @@ static const int vertpadbar         = 0;        /* vertical padding for statusba
 #define ICONSIZE 16 /* icon size */
 #define ICONSPACING 5 /* space between icon and title */
 static const char *fonts[] = {
-	"LXGWWenKai:size=12",
-	"Iosevka Nerd Font:size=13",
+	"LXGWWenKai:size=10",
+	"Iosevka Nerd Font:size=10",
 };
 static const char dmenufont[] = "monospace:size=10";
 
