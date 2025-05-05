@@ -1006,7 +1006,8 @@ int drawstatusbar(Monitor *m, int bh, char *stext)
 		isCode = 0;
 	text = p;
 
-	w += 2; /* 1px padding on both sides */
+	// w += 2; /* 1px padding on both sides */
+	w += lrpad;
 	ret = x = m->ww - w;
 	x = m->ww - w - getsystraywidth();
 
@@ -1014,7 +1015,8 @@ int drawstatusbar(Monitor *m, int bh, char *stext)
 	drw->scheme[ColFg] = scheme[SchemeNorm][ColFg];
 	drw->scheme[ColBg] = scheme[SchemeNorm][ColBg];
 	drw_rect(drw, x, 0, w, bh, 1, 1);
-	x++;
+	// x++;
+	x += lrpad / 2;
 
 	/* process status text */
 	i = -1;
@@ -1024,7 +1026,8 @@ int drawstatusbar(Monitor *m, int bh, char *stext)
 
 			text[i] = '\0';
 			w = TEXTW(text) - lrpad;
-			drw_text(drw, x, 0, w, bh, 0, text, 0);
+			// drw_text(drw, x, 0, w, bh, 0, text, 0);
+			drw_text(drw, x, vertpadbar / 2, w, bh - vertpadbar, 0, text, 0);
 
 			x += w;
 			/* process code */
@@ -1056,7 +1059,8 @@ int drawstatusbar(Monitor *m, int bh, char *stext)
 						;
 					int rh = atoi(text + ++i);
 
-					drw_rect(drw, rx + x, ry, rw, rh, 1, 0);
+					// drw_rect(drw, rx + x, ry, rw, rh, 1, 0);
+					drw_rect(drw, rx + x, ry + vertpadbar / 2, rw, MIN(rh, bh - vertpadbar), 1, 0);
 				} else if (text[i] == 'f') {
 					x += atoi(text + ++i);
 				}
