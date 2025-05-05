@@ -32,7 +32,8 @@ static const char col_cyan[] = "#74bee9";
 static const char col_write[] = "#FFFFFF";
 static const char col_cccc[] = "#CCCCFF";
 static const char col_xxxx[] = "#FFCCFF";
-static const char col_liang[] = "#99FFFF";
+static const char col_liang[] = "#91d7e3";
+static const char col_systray[] = "#f4dbd6";
 static const char col_borderbar[] = "#101419";
 static const char *colors[][3] = {
 	/*               fg         bg         border   */
@@ -40,7 +41,7 @@ static const char *colors[][3] = {
 	[SchemeSel] = { col_gray4, col_cyan, col_cyan },
 	[SchemeHov]  = { col_gray4, col_liang,  col_liang  },
 	[SchemeHid]  = { col_liang,  col_gray1, col_liang  },
-	[SchemeSystray] = { "#1e1e2e", "#1e1e2e","#1e1e2e", },
+	[SchemeSystray] = { col_systray, col_systray,col_systray, },
 };
 
 typedef struct {
@@ -80,14 +81,7 @@ static const Rule rules[] = {
 	{ NULL, NULL, "腾讯频道", 0, 1, -1 }, // qq图片查看器        浮动
 	{ NULL, NULL, "预览", 0, 1, -1 }, // qq图片查看器        浮动
 	// { NULL, NULL, "图片查看器", 0, 1, -1 }, // qq图片查看器        浮动
-	{
-		"wemeetapp",
-		NULL,
-		NULL,
-		TAGMASK,
-		1,
-		1,
-	},
+	{ "wemeetapp", NULL, NULL, 0, 1, 1, },
 };
 
 /* layout(s) */
