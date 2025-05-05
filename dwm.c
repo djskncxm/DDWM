@@ -297,6 +297,8 @@ static int	  screen;
 static int	  sw, sh; /* X display screen geometry width, height */
 static int	  bh; /* bar height */
 static int	  lrpad; /* sum of left and right padding for text */
+static int	  vp; /* vertical padding for bar */
+static int	  sp; /* side padding for bar */
 static int (*xerrorxlib)(Display *, XErrorEvent *);
 static unsigned int numlockmask = 0;
 static void (*handler[LASTEvent])(XEvent *) = { [ButtonPress] = buttonpress,
@@ -930,7 +932,7 @@ void drawbar(Monitor *m)
 					scm = SchemeNorm;
 				drw_setscheme(drw, scheme[scm]);
 
-				drw_text(drw, x, 0, tabw, bh, lrpad / 2 + (c->icon ? c->icw + ICONSPACING : 0), c->name, 0);
+				drw_text(drw, x, 0, tabw - 2 * sp, bh, lrpad / 2 + (c->icon ? c->icw + ICONSPACING : 0), c->name, 0);
 
 				if (remainder >= 0) {
 					if (remainder == 0) {
@@ -954,7 +956,7 @@ void drawbar(Monitor *m)
 		}
 	} else {
 		drw_setscheme(drw, scheme[SchemeNorm]);
-		drw_rect(drw, x, 0, m->ww - stw - x, bh, 1, 1);
+		drw_rect(drw, x, 0, m->ww - stw - x - 2 * sp, bh, 1, 1);
 	}
 	m->bt = n;
 	m->btw = w;
@@ -1027,7 +1029,7 @@ int drawstatusbar(Monitor *m, int bh, char *stext)
 			text[i] = '\0';
 			w = TEXTW(text) - lrpad;
 			// drw_text(drw, x, 0, w, bh, 0, text, 0);
-			drw_text(drw, x, vertpadbar / 2, w, bh - vertpadbar, 0, text, 0);
+			drw_text(drw, x - 2 * sp, vertpadbar / 2, w, bh - vertpadbar, 0, text, 0);
 
 			x += w;
 			/* process code */
@@ -1869,7 +1871,8 @@ void resizebarwin(Monitor *m)
 	unsigned int w = m->ww;
 	if (showsystray && m == systraytomon(m) && !systrayonleft)
 		w -= getsystraywidth();
-	XMoveResizeWindow(dpy, m->barwin, m->wx, m->by, w, bh);
+	// XMoveResizeWindow(dpy, m->barwin, m->wx, m->by, w, bh); 标签栏间隙补丁1
+	XMoveResizeWindow(dpy, m->barwin, m->wx + sp, m->by + vp, m->ww - 2 * sp, bh);
 }
 
 void resizeclient(Client *c, int x, int y, int w, int h)
@@ -2178,6 +2181,8 @@ void setup(void)
 		die("no fonts could be loaded.");
 	lrpad = drw->fonts->h + horizpadbar;
 	bh = drw->fonts->h + vertpadbar + 2;
+	sp = sidepad;
+	vp = (topbar == 1) ? vertpad : -vertpad;
 	updategeom();
 	/* init atoms */
 	utf8string = XInternAtom(dpy, "UTF8_STRING", False);
@@ -2622,8 +2627,10 @@ void updatebars(void)
 		w = m->ww;
 		if (showsystray && m == systraytomon(m))
 			w -= getsystraywidth();
-		m->barwin = XCreateWindow(dpy, root, m->wx, m->by, w, bh, 0, DefaultDepth(dpy, screen), CopyFromParent, DefaultVisual(dpy, screen),
-					  CWOverrideRedirect | CWBackPixmap | CWEventMask, &wa);
+		// m->barwin = XCreateWindow(dpy, root, m->wx,      m->by,      w,              bh, 0, DefaultDepth(dpy, screen), CopyFromParent, DefaultVisual(dpy, screen), CWOverrideRedirect|CWBackPixmap|CWEventMask, &wa);
+		m->barwin = XCreateWindow(dpy, root, m->wx + sp, m->by + vp, m->ww - 2 * sp, bh, 0, DefaultDepth(dpy, screen), CopyFromParent,
+					  DefaultVisual(dpy, screen), CWOverrideRedirect | CWBackPixmap | CWEventMask, &wa);
+
 		XDefineCursor(dpy, m->barwin, cursor[CurNormal]->cursor);
 
 		if (showsystray && m == systraytomon(m))
@@ -2639,11 +2646,11 @@ void updatebarpos(Monitor *m)
 	m->wy = m->my;
 	m->wh = m->mh;
 	if (m->showbar) {
-		m->wh -= bh;
-		m->by = m->topbar ? m->wy : m->wy + m->wh;
-		m->wy = m->topbar ? m->wy + bh : m->wy;
+		m->wh = m->wh - vertpad - bh;
+		m->by = m->topbar ? m->wy : m->wy + m->wh + vertpad;
+		m->wy = m->topbar ? m->wy + bh + vp : m->wy;
 	} else
-		m->by = -bh;
+		m->by = -bh - vp;
 }
 
 void updateclientlist(void)
