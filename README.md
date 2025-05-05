@@ -1,4 +1,5 @@
 ## DDWM是我的dwm分支(duck dwm)
+![dwm](assets/dwm2.png)
 
 ![xxx](./assets//Pasted_image_20250327085839.png)
 这是一个概况
@@ -40,6 +41,3 @@ sudo ./dwma.sh # 这个文件是创建DM用的，不放心大可以打开看看
 ## 其他应该没了，有疑问可以加我
 QQ 959735909
 邮箱同上
-
-
-
